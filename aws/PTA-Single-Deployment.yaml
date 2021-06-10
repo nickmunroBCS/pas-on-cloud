@@ -566,7 +566,7 @@ Mappings:
     us-east-2:
       PTA: ami-0eff7a81246d001d8
     eu-west-2:
-      PTA: ami-0dc10ea3098ad69db
+      PTA: ami-0b6f4726bde21345d
     us-west-1:
       PTA: ami-0b3d78d239d55509e
     us-west-2:
