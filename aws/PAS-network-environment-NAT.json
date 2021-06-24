@@ -1882,7 +1882,7 @@
       }
     }
   },
-  "Description": "This template will create the required network environment for CyberArk PAS products. **WARNING** You will be billed for the AWS resources used if you create a stack from this template",
+  "Description": "Forked from the Cyberark pas-on-cloud, this template will create the required network environment for CyberArk PAS at BCS.",
   "Metadata": {
     "AWS::CloudFormation::Interface": {
       "ParameterGroups": [
@@ -1925,7 +1925,7 @@
           "default": "NAT Gateway Subnet CIDR"
         },
         "VaultMainSubnetCIDR": {
-          "default": "Primaary Vault Main Subnet CIDR"
+          "default": "Primary Vault Main Subnet CIDR"
         },
         "VaultDRSubnetCIDR": {
           "default": "DR Vault Subnet CIDR"
@@ -1975,7 +1975,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.0.0/16",
+      "Default": "10.20.0.0/16",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -1984,7 +1984,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.0.0/28",
+      "Default": "10.20.0.0/28",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -1993,7 +1993,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.1.0/24",
+      "Default": "10.20.1.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2002,7 +2002,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.2.0/24",
+      "Default": "10.20.2.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2011,7 +2011,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.3.0/24",
+      "Default": "10.20.3.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2020,7 +2020,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.4.0/24",
+      "Default": "10.20.4.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2029,7 +2029,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.5.0/24",
+      "Default": "10.20.5.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2038,7 +2038,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.6.0/24",
+      "Default": "10.20.6.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2047,7 +2047,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.7.0/24",
+      "Default": "10.20.7.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2056,7 +2056,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.8.0/24",
+      "Default": "10.20.8.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2065,7 +2065,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.9.0/24",
+      "Default": "10.20.9.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2074,7 +2074,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.10.0/24",
+      "Default": "10.20.10.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2083,7 +2083,7 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.11.0/24",
+      "Default": "10.20.11.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
@@ -2092,19 +2092,21 @@
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
-      "Default": "10.0.12.0/24",
+      "Default": "10.20.12.0/24",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(1[6-9]|2[0-8]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
     "UsersAccessCIDR": {
       "Description": "Allowed IPv4 address range for users access to CyberArk components",
       "Type": "String",
+      "Default": "217.33.182.248/29",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     },
     "AdministrativeAccessCIDR": {
       "Description": "Allowed IPv4 address range for Remote Desktop administrative access to CyberArk instances",
       "Type": "String",
+      "Default": "217.33.182.248/29",
       "AllowedPattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))$",
       "ConstraintDescription": "Must be a valid IP CIDR range of the form x.x.x.x/x."
     }

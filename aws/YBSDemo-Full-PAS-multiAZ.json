@@ -1,0 +1,2515 @@
+{
+    "Resources": {
+        "LogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+                "RetentionInDays": 30
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "CPMCfnInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "CPMMachine/CPMCfnInitLogStream"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "CPMConfigurationsLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "CPMMachine/CPMConfigurationsLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "CPMRegistrationLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "CPMMachine/CPMRegistrationLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "CPMSetLocalServiceLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "CPMMachine/CPMSetLocalServiceLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PSMCfnInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PSMMachine/PSMCfnInitLogStream"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PSMConfigurationsLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PSMMachine/PSMConfigurationsLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PSMRegistrationLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PSMMachine/PSMRegistrationLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PVWACfnInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PVWAMachine/PVWACfnInitLogStream"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PVWAConfigurationsLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PVWAMachine/PVWAConfigurationsLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PVWARegistrationLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PVWAMachine/PVWARegistrationLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PVWASetLocalServiceLog": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "PVWAMachine/PVWASetLocalServiceLog"
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultCfnInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultMachine/CfnInitLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "VaultInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultMachine/VaultInitLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "VaultPostInstallLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultMachine/VaultPostInstallLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRCfnInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultDRMachine/CfnInitLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRInitLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultDRMachine/VaultInitLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRPostInstallLogStream": {
+            "Type": "AWS::Logs::LogStream",
+            "Properties": {
+                "LogGroupName": {
+                    "Fn::Sub": "${LogGroup}"
+                },
+                "LogStreamName": "VaultDRMachine/VaultPostInstallLog"
+            },
+            "UpdateReplacePolicy": "Retain",
+            "DeletionPolicy": "Retain"
+        },
+        "StoreMasterPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "StorePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "Password": {
+                    "Ref": "VaultMasterPassword"
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole"
+            ]
+        },
+        "StoreAdminPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "StorePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "Password": {
+                    "Ref": "VaultAdminPassword"
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole"
+            ]
+        },
+        "StoreDRPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "StorePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "Password": {
+                    "Ref": "VaultDRPassword"
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole"
+            ]
+        },
+        "StoreSecret": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "StorePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "Password": {
+                    "Ref": "Secret"
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole"
+            ]
+        },
+        "CleanMasterPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "DeletePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "key": {
+                    "Fn::GetAtt": [
+                        "StoreMasterPassword",
+                        "SsmId"
+                    ]
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole",
+                "StorePasswordLambda",
+                "VaultDRMachine"
+            ]
+        },
+        "CleanAdminPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "DeletePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "key": {
+                    "Fn::GetAtt": [
+                        "StoreAdminPassword",
+                        "SsmId"
+                    ]
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole",
+                "StorePasswordLambda",
+                "PSMPMachine"
+            ]
+        },
+        "CleanDRPassword": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "DeletePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "key": {
+                    "Fn::GetAtt": [
+                        "StoreDRPassword",
+                        "SsmId"
+                    ]
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole",
+                "StorePasswordLambda",
+                "VaultDRMachine"
+            ]
+        },
+        "CleanSecret": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "DeletePasswordLambda",
+                        "Arn"
+                    ]
+                },
+                "key": {
+                    "Fn::GetAtt": [
+                        "StoreSecret",
+                        "SsmId"
+                    ]
+                }
+            },
+            "DependsOn": [
+                "LambdaDeployRole",
+                "StorePasswordLambda",
+                "VaultDRMachine"
+            ]
+        },
+        "RemovePermissionVault": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "RemovePermissionLambda",
+                        "Arn"
+                    ]
+                },
+                "vault_role_name": {
+                    "Ref": "VaultInstancesRole"
+                },
+                "lambda_role_name": {
+                    "Ref": "LambdaRemovePermissionsRole"
+                },
+                "instance": {
+                    "Ref": "VaultMachine"
+                },
+                "region": {
+                    "Ref": "AWS::Region"
+                }
+            }
+        },
+        "RemovePermissionVaultDR": {
+            "Type": "AWS::CloudFormation::CustomResource",
+            "Version": "1.0",
+            "Properties": {
+                "ServiceToken": {
+                    "Fn::GetAtt": [
+                        "RemovePermissionLambda",
+                        "Arn"
+                    ]
+                },
+                "vault_role_name": {
+                    "Ref": "VaultDRInstancesRole"
+                },
+                "lambda_role_name": {
+                    "Ref": "LambdaRemovePermissionsRole"
+                },
+                "instance": {
+                    "Ref": "VaultDRMachine"
+                },
+                "region": {
+                    "Ref": "AWS::Region"
+                }
+            }
+        },
+        "RemovePermissionsKMSPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "KMSPolicy",
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Deny",
+                            "Action": [
+                                "*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "LambdaRemovePermissionsRole"
+                    }
+                ]
+            },
+            "DependsOn": [
+                "RemovePermissionVaultDR"
+            ]
+        },
+        "RemovePermissionsVaultBootstrapIAMPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "VaultBootstrapIAMPolicy",
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Deny",
+                            "Action": [
+                                "*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "LambdaRemovePermissionsRole"
+                    }
+                ]
+            },
+            "DependsOn": [
+                "RemovePermissionVaultDR"
+            ]
+        },
+        "LambdaDeployRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Policies": [
+                    {
+                        "PolicyName": "CloudWatch",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:CreateLogGroup",
+                                        "logs:CreateLogStream",
+                                        "logs:DescribeLogGroups",
+                                        "logs:DescribeLogStreams",
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "SSM",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:PutParameter",
+                                        "ssm:DeleteParameter"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/*"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "StorePasswordLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Description": "Saves given password to parameter store as SecureString",
+                "Code": {
+                    "ZipFile": "import uuid\nimport boto3\nimport cfnresponse\ndef lambda_handler(event, context):\n    ssmClient = boto3.client('ssm')\n    physicalResourceId = str(uuid.uuid4())\n    if 'PhysicalResourceId' in event:\n        physicalResourceId = event['PhysicalResourceId']\n    if 'Password' not in event['ResourceProperties'] or not event['ResourceProperties']['Password']:\n        print ('The property Password must not be empty')\n        return cfnresponse.send(event, context, cfnresponse.FAILED, {}, physicalResourceId)\n    try:\n        if event['RequestType'] == 'Delete':\n            ssmClient.delete_parameter(Name=physicalResourceId)\n            print ('Password successfully deleted. Id='+physicalResourceId)\n            return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)\n        if event['RequestType'] == 'Create':\n            ssmClient.put_parameter(Name=physicalResourceId, Value=event['ResourceProperties']['Password'], Type='SecureString')\n            print ('The store parameter has been created. Id='+physicalResourceId)\n            response = {'SsmId': physicalResourceId}\n            return cfnresponse.send(event, context, cfnresponse.SUCCESS, response, physicalResourceId)\n    except ssmClient.exceptions.ParameterNotFound:\n        print ('Item already removed')\n        return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)\n    except Exception as E:\n        print (E)\n        return cfnresponse.send(event, context, cfnresponse.FAILED, {}, physicalResourceId)"
+                },
+                "Runtime": "python3.7",
+                "Handler": "index.lambda_handler",
+                "Timeout": 60,
+                "Role": {
+                    "Fn::GetAtt": [
+                        "LambdaDeployRole",
+                        "Arn"
+                    ]
+                }
+            }
+        },
+        "DeletePasswordLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Description": "Delete password from parameter store",
+                "Code": {
+                    "ZipFile": "import uuid\nimport boto3\nimport cfnresponse\ndef lambda_handler(event, context):\n    ssmClient = boto3.client('ssm')\n    physicalResourceId = str(uuid.uuid4())\n    if 'PhysicalResourceId' in event:\n        physicalResourceId = event['PhysicalResourceId']\n    try:\n        if event['RequestType'] == 'Create':\n            ssmClient.delete_parameter(Name=event['ResourceProperties']['key'])\n            print ('Password succesfully deleted. Id='+event['ResourceProperties']['key'])\n            return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)\n        if event['RequestType'] == 'Delete':\n            return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)\n    except ssmClient.exceptions.ParameterNotFound:\n        print ('Item already removed')\n        return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)\n    except Exception as E:\n        print (E)\n        return cfnresponse.send(event, context, cfnresponse.FAILED, {}, physicalResourceId)"
+                },
+                "Runtime": "python3.7",
+                "Handler": "index.lambda_handler",
+                "Timeout": 60,
+                "Role": {
+                    "Fn::GetAtt": [
+                        "LambdaDeployRole",
+                        "Arn"
+                    ]
+                }
+            }
+        },
+        "LambdaLogDenyRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Policies": [
+                    {
+                        "PolicyName": "denyLambdaLogging",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Deny",
+                                    "Action": [
+                                        "logs:*"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "LambdaRemovePermissionsRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Policies": [
+                    {
+                        "PolicyName": "CloudWatch",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:CreateLogGroup",
+                                        "logs:CreateLogStream",
+                                        "logs:DescribeLogGroups",
+                                        "logs:DescribeLogStreams",
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "KMSPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "kms:DescribeKey"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "VaultBootstrapIAMPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "VaultBootstrapIAMPolicy",
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "iam:GetRole",
+                                "iam:DeleteRolePolicy",
+                                "iam:PutRolePolicy"
+                            ],
+                            "Resource": [
+                                {
+                                    "Fn::GetAtt": [
+                                        "VaultInstancesRole",
+                                        "Arn"
+                                    ]
+                                },
+                                {
+                                    "Fn::GetAtt": [
+                                        "VaultDRInstancesRole",
+                                        "Arn"
+                                    ]
+                                },
+                                {
+                                    "Fn::GetAtt": [
+                                        "LambdaRemovePermissionsRole",
+                                        "Arn"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "LambdaRemovePermissionsRole"
+                    }
+                ]
+            }
+        },
+        "RemovePermissionLambda": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Description": "Change Policies of VaultInstancesRole IAM Role",
+                "Code": {
+                    "ZipFile": "import json\nimport boto3\nimport uuid\nimport cfnresponse\n\ndef lambda_handler(event, context):\n  physicalResourceId = str(uuid.uuid4())\n  if 'PhysicalResourceId' in event:\n    physicalResourceId = event['PhysicalResourceId']\n  if event['RequestType'] == 'Create':\n    try:\n      print(\"Creating AWS CloudFormation\")\n      print(\"Start RemovePermissionLambda execution\")\n      client = boto3.client('iam')\n      \n      # Get vault role info\n      vault_role = client.get_role(RoleName=event['ResourceProperties']['vault_role_name'])['Role']\n      print(\"Retrieve IAM Role ID: {0}\".format(vault_role[\"RoleId\"]))\n      \n      # Delete old Policies\n      list = [event['ResourceProperties']['vault_role_name']]\n      inline_policies = [\"VaultInstancesKMSPolicy\",\"VaultBootstrapIAMPolicy\",\"VaultSSMPolicy\",\"VaultFilesBucketAccess\"]\n      print(\"Trying to delete inline policies from {0} IAM Role\".format(vault_role[\"RoleId\"]))\n      for role in list:\n        print(\"Delete policies in {0} IAM Role\".format(role))\n        for inline_policy in inline_policies:\n          try:\n            delete = client.delete_role_policy(RoleName=role, PolicyName=inline_policy)\n            print(\"Delete policy: {0}\".format(inline_policy))\n          except:\n            print(\"Didn\\'t find policy: {0}\".format(inline_policy))\n      print(\"Finish to delete inline policies from {0} IAM Role\".format(vault_role[\"RoleId\"]))\n\n      # Get KMS ID\n      kms = boto3.client('kms', region_name=event['ResourceProperties']['region'])\n      kms_arn = kms.describe_key(KeyId=\"alias/vault/{0}\".format(event['ResourceProperties']['instance']))['KeyMetadata']['Arn']\n      print(\"Retrieve KMS ARN: {0}\".format(kms_arn))\n      \n      # Create inline policy\n      kms_policy =  {\n        \"Statement\": [\n          {\n            \"Action\": [\n              \"kms:Encrypt\",\n              \"kms:Decrypt\"\n              ],\n              \"Resource\": kms_arn,\n              \"Effect\": \"Allow\"\n          }\n        ]\n      }\n      \n      response = client.put_role_policy(RoleName=vault_role['RoleName'], PolicyName=\"VaultInstancesKMSPolicy\", PolicyDocument=json.dumps(kms_policy))\n      print(\"Add inline policy VaultInstancesKMSRestrictedPolicy to {0} IAM Role\".format(vault_role[\"RoleId\"]))\n      \n      return cfnresponse.send(event, context, cfnresponse.SUCCESS, None, {}, physicalResourceId)\n    except Exception as E:\n      print(\"Error in Lambda execution: {0}\".format(E))\n      return cfnresponse.send(event, context, cfnresponse.FAILED,E,{}, physicalResourceId)\n  elif event['RequestType'] == 'Delete':\n    print(\"Deleting AWS CloudFormation\")\n    return cfnresponse.send(event, context, cfnresponse.SUCCESS, {}, physicalResourceId)"
+                },
+                "Runtime": "python3.7",
+                "Handler": "index.lambda_handler",
+                "Timeout": 60,
+                "Role": {
+                    "Fn::GetAtt": [
+                        "LambdaRemovePermissionsRole",
+                        "Arn"
+                    ]
+                }
+            }
+        },
+        "VaultMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "VaultInstanceName"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "VaultInstanceSecurityGroups"
+                },
+                "SubnetId": {
+                    "Ref": "VaultInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "Vault"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "VaultInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "<script>\ncfn-init.exe -v -s ${AWS::StackId} -r VaultMachine --configsets ascending --region ${AWS::Region}\n</script>"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "VaultInstancesProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "ascending": [
+                            "configSSMAndServerAndTagKMS",
+                            "configServices",
+                            "configSignal"
+                        ]
+                    },
+                    "configSSMAndServerAndTagKMS": {
+                        "services": {
+                            "windows": {
+                                "AmazonSSMAgent": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\AWS.EC2.Windows.CloudWatch.json"
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "1-configcw": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CloudWatch.ps1 -LogGroup ${LogGroup} -CfnInitLogStream ${VaultCfnInitLogStream} -VaultInitLogStream ${VaultInitLogStream} -VaultPostInstallLogStream ${VaultPostInstallLogStream} -Region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 10
+                            },
+                            "2-restartSSM": {
+                                "command": "powershell.exe -Command \"Restart-Service AmazonSSMAgent\"",
+                                "waitAfterCompletion": 60
+                            }
+                        }
+                    },
+                    "configServices": {
+                        "commands": {
+                            "1-download": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\VaultInit.ps1 -VaultFilesBucket ${VaultFilesBucket} -LicenseFileKey ${LicenseFile} -RecoveryPublicKey ${RecoveryPublicKey} -Region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "2-postInstallWithDR": {
+                                "command": {
+                                    "Fn::Sub": [
+                                        "powershell.exe -File C:\\CyberArk\\Deployment\\VaultPostInstall.ps1 -IsPrimaryOrDR \"Primary\" -SSMMasterPassParameterID  ${StoreMasterPassword.SsmId} -SSMAdminPassParameterID ${StoreAdminPassword.SsmId} -SSMDRPassParameterID ${StoreDRPassword.SsmId}  -LicensePath \"C:\\CyberArk\\Deployment\\vaultLicense.xml\" -RecoveryPublicKeyPath \"C:\\CyberArk\\Deployment\\recoveryPublic.key\"  -Region ${AWS::Region} ${Secret}",
+                                        {
+                                            "Secret": {
+                                                "Fn::If": [
+                                                    "SecretEmpty",
+                                                    "",
+                                                    {
+                                                        "Fn::Sub": "-SSMSecretParameterID ${StoreSecret.SsmId}"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "3-changeKMSTag": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\VaultTagKMS.ps1 -Role ${VaultInstancesRole} -Region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "4-restart": {
+                                "command": "powershell.exe -Command Restart-Computer",
+                                "waitAfterCompletion": "forever"
+                            }
+                        }
+                    },
+                    "configSignal": {
+                        "commands": {
+                            "0-signalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "cfn-signal.exe -e %ERRORLEVEL% --stack ${AWS::StackId} --resource VaultMachine --region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT20M"
+                }
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Fn::Sub": "${VaultInstanceName} DR"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "VaultInstanceSecurityGroups"
+                },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeSize": 30,
+                            "Encrypted": true
+                        }
+                    }
+                ],
+                "SubnetId": {
+                    "Ref": "DRInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "Vault"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "VaultInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "<script>\ncfn-init.exe -v -s ${AWS::StackId} -r VaultDRMachine --configsets ascending --region ${AWS::Region}\n</script>"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "VaultDRInstancesProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "ascending": [
+                            "configSSMAndHostnameAndTagKMS",
+                            "configServices",
+                            "configSignal"
+                        ]
+                    },
+                    "configSSMAndHostnameAndTagKMS": {
+                        "services": {
+                            "windows": {
+                                "AmazonSSMAgent": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\AWS.EC2.Windows.CloudWatch.json"
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "1-configCloudWatch": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CloudWatch.ps1 -LogGroup ${LogGroup} -CfnInitLogStream ${VaultDRCfnInitLogStream} -VaultInitLogStream ${VaultDRInitLogStream} -VaultPostInstallLogStream ${VaultDRPostInstallLogStream} -Region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 10
+                            },
+                            "2-restartSSM": {
+                                "command": "powershell.exe -Command \"Restart-Service AmazonSSMAgent\"",
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    },
+                    "configServices": {
+                        "commands": {
+                            "1-postInstall": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\VaultPostInstall.ps1 -SSMDRPassParameterID ${StoreDRPassword.SsmId} -IsPrimaryOrDR \"DR\" -PrimaryVaultIP ${VaultMachine.PrivateIp} -LicensePath \"C:\\CyberArk\\Deployment\\vaultLicense.xml\" -Region ${AWS::Region} -SSMSecretParameterID ${StoreSecret.SsmId}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "2-changeKMSTag": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\VaultTagKMS.ps1 -Role ${VaultDRInstancesRole} -Region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "3-restart": {
+                                "command": "powershell.exe -Command Restart-Computer",
+                                "waitAfterCompletion": "forever"
+                            }
+                        }
+                    },
+                    "configSignal": {
+                        "commands": {
+                            "0-signalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "cfn-signal.exe -e %ERRORLEVEL% --stack ${AWS::StackId} --resource VaultDRMachine --region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT20M"
+                }
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultInstancesProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "VaultInstancesRole"
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRInstancesProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "VaultDRInstancesRole"
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultInstancesRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "VaultLogPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:DescribeLogGroups",
+                                        "logs:DescribeLogStreams"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultCfnInitLogStream}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultPostInstallLogStream}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultInitLogStream}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultSSMPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:GetParameters"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreMasterPassword.SsmId}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreAdminPassword.SsmId}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreDRPassword.SsmId}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreSecret.SsmId}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultFilesBucketAccess",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "s3:GetObject",
+                                        "s3:GetObjectVersion"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:s3:::${VaultFilesBucket}/${LicenseFile}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:s3:::${VaultFilesBucket}/${RecoveryPublicKey}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "s3:GetBucketLocation"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:s3:::${VaultFilesBucket}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultInstancesKMSPolicy",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "kms:CreateKey",
+                                        "kms:GenerateRandom",
+                                        "kms:TagResource",
+                                        "kms:Encrypt",
+                                        "kms:Decrypt",
+                                        "kms:EnableKeyRotation",
+                                        "kms:UpdateKeyDescription",
+                                        "kms:CreateAlias"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultBootstrapIAMPolicy",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "iam:DeleteRolePolicy",
+                                        "iam:PutRolePolicy"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "VaultDRInstancesRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "VaultLogPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:DescribeLogGroups",
+                                        "logs:DescribeLogStreams"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultDRInitLogStream}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultDRCfnInitLogStream}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${LogGroup}:log-stream:${VaultDRPostInstallLogStream}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultSSMPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ssm:GetParameters"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreDRPassword.SsmId}"
+                                        },
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${StoreSecret.SsmId}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultInstancesKMSPolicy",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "kms:CreateKey",
+                                        "kms:GenerateRandom",
+                                        "kms:TagResource",
+                                        "kms:Encrypt",
+                                        "kms:Decrypt",
+                                        "kms:EnableKeyRotation",
+                                        "kms:UpdateKeyDescription",
+                                        "kms:CreateAlias"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "VaultBootstrapIAMPolicy",
+                        "PolicyDocument": {
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "iam:DeleteRolePolicy",
+                                        "iam:PutRolePolicy"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "ComponentInstanceProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "Roles": [
+                    {
+                        "Ref": "ComponentInstanceRole"
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "ComponentInstanceRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "ec2.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "ManagedPolicyArns": [
+                    {
+                        "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonEC2RoleforSSM"
+                    }
+                ],
+                "Policies": [
+                    {
+                        "PolicyName": "LogRolePolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "logs:CreateLogGroup",
+                                        "logs:CreateLogStream",
+                                        "logs:PutLogEvents",
+                                        "logs:DescribeLogStreams"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Sub": "arn:${AWS::Partition}:logs:*:*:*"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "PVWAMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "PVWAInstanceName"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "PVWAInstanceSecurityGroups"
+                },
+                "SubnetId": {
+                    "Ref": "PVWAInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "PVWA"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "PVWAInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "<script> cfn-init.exe -v -s ${AWS::StackId} -r PVWAMachine --configsets ascending --region ${AWS::Region} </script>"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "ComponentInstanceProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "ascending": [
+                            "configSSMAndHostname",
+                            "configServices",
+                            "configSignal"
+                        ]
+                    },
+                    "configSSMAndHostname": {
+                        "services": {
+                            "windows": {
+                                "AmazonSSMAgent": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\AWS.EC2.Windows.CloudWatch.json"
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "1-cloudwatch": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CloudWatch.ps1 -LogGroup ${LogGroup} -PVWACfnInitLogStream ${PVWACfnInitLogStream} -PVWAConfiguration ${PVWAConfigurationsLog} -PVWARegistration ${PVWARegistrationLog} -PVWASetLocalService ${PVWASetLocalServiceLog} -Region ${AWS::Region}\n"
+                                }
+                            },
+                            "2-restartSSM": {
+                                "command": "powershell.exe -Command \"Restart-Service AmazonSSMAgent\"",
+                                "waitAfterCompletion": 60,
+                                "ignoreErrors": true
+                            }
+                        }
+                    },
+                    "configServices": {
+                        "commands": {
+                            "1-configurePVWAService": {
+                                "command": "powershell.exe -File C:\\CyberArk\\Deployment\\Set-LocalService.ps1 -Username \"PVWAReportsUser\" -Services \"CyberArk Scheduled Tasks\"",
+                                "waitAfterCompletion": 0
+                            },
+                            "2-configuration": {
+                                "command": {
+                                    "Fn::Sub": [
+                                        "powershell.exe -File C:\\CyberArk\\Deployment\\PVWAConfiguration.ps1 -VaultIpAddress ${VaultIpAddress} -VaultAdminUser Administrator -VaultPort 1858 -HostName ${InputHostname}",
+                                        {
+                                            "VaultIpAddress": {
+                                                "Fn::Sub": "${VaultMachine.PrivateIp},${VaultDRMachine.PrivateIp}"
+                                            },
+                                            "InputHostname": {
+                                                "Fn::If": [
+                                                    "PVWAHostNameEmpty",
+                                                    "empty",
+                                                    {
+                                                        "Fn::Sub": "${PVWAHostName}"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "3-registration": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\PVWARegistration.ps1 -VaultAdminUser Administrator -SSMAdminPassParameterID ${StoreAdminPassword.SsmId}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "4-startAppPool": {
+                                "command": "powershell -Command \"& {&'Import-Module' WebAdministration}\"; \"& {&'Start-WebAppPool' -Name PasswordVaultWebAccessPool}\"; \"& {&'Set-ItemProperty' -Path IIS:\\AppPools\\PasswordVaultWebAccessPool -Name autoStart -Value 'true'}\"",
+                                "waitAfterCompletion": 0
+                            },
+                            "5-CSTserviceConfig": {
+                                "command": "sc config \"CyberArk Scheduled Tasks\" start=auto",
+                                "waitAfterCompletion": 0
+                            },
+                            "6-restart": {
+                                "command": "powershell.exe -Command \"Restart-Computer -Force\"",
+                                "waitAfterCompletion": "forever"
+                            }
+                        }
+                    },
+                    "configSignal": {
+                        "commands": {
+                            "0-signalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "cfn-signal.exe -e %ERRORLEVEL% --stack ${AWS::StackId} --resource PVWAMachine --region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT15M"
+                }
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "CPMMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "CPMInstanceName"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "CPMInstanceSecurityGroups"
+                },
+                "SubnetId": {
+                    "Ref": "CPMInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "CPM"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "CPMInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "<script> cfn-init.exe -v -s ${AWS::StackId} -r CPMMachine --configsets ascending --region ${AWS::Region} </script>"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "ComponentInstanceProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "ascending": [
+                            "configSSMAndHostname",
+                            "configServices",
+                            "configSignal"
+                        ]
+                    },
+                    "configSSMAndHostname": {
+                        "services": {
+                            "windows": {
+                                "AmazonSSMAgent": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\AWS.EC2.Windows.CloudWatch.json"
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "1-cloudwatch": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CloudWatch.ps1 -LogGroup ${LogGroup} -CPMCfnInitLogStream ${CPMCfnInitLogStream} -CPMConfiguration ${CPMConfigurationsLog} -CPMRegistration ${CPMRegistrationLog} -CPMSetLocalService ${CPMSetLocalServiceLog} -Region ${AWS::Region}\n"
+                                }
+                            },
+                            "2-restartSSM": {
+                                "command": "powershell.exe -Command \"Restart-Service AmazonSSMAgent\"",
+                                "waitAfterCompletion": 60,
+                                "ignoreErrors": true
+                            }
+                        }
+                    },
+                    "configServices": {
+                        "commands": {
+                            "1-configuration": {
+                                "command": {
+                                    "Fn::Sub": [
+                                        "powershell.exe -File C:\\CyberArk\\Deployment\\CPMConfiguration.ps1 -VaultIpAddress ${VaultIpAddress} -VaultAdminUser Administrator -VaultPort 1858",
+                                        {
+                                            "VaultIpAddress": {
+                                                "Fn::Sub": "${VaultMachine.PrivateIp},${VaultDRMachine.PrivateIp}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "2-registration": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CPMRegistration.ps1 -VaultAdminUser Administrator -SSMAdminPassParameterID ${StoreAdminPassword.SsmId}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "3-configureCPMService": {
+                                "command": "powershell.exe -File C:\\CyberArk\\Deployment\\Set-LocalService.ps1 -Username \"PasswordManagerUser\" -Services \"CyberArk Central Policy Manager Scanner\"",
+                                "waitAfterCompletion": 0
+                            },
+                            "4-configureCPMService": {
+                                "command": "powershell.exe -File C:\\CyberArk\\Deployment\\Set-LocalService.ps1 -Username \"PasswordManagerUser\" -Services \"CyberArk Password Manager\"",
+                                "waitAfterCompletion": 0
+                            },
+                            "5-CPMserviceConfig": {
+                                "command": "sc config \"CyberArk Password Manager\" start=auto",
+                                "waitAfterCompletion": 0
+                            },
+                            "6-CPMSserviceConfig": {
+                                "command": "sc config \"CyberArk Central Policy Manager Scanner\" start=auto",
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    },
+                    "configSignal": {
+                        "commands": {
+                            "0-signalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "cfn-signal.exe -e %ERRORLEVEL% --stack ${AWS::StackId} --resource CPMMachine --region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT15M"
+                }
+            },
+            "DeletionPolicy": "Retain",
+            "DependsOn": [
+                "PVWAMachine"
+            ]
+        },
+        "PSMMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "PSMInstanceName"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "PSMInstanceSecurityGroups"
+                },
+                "SubnetId": {
+                    "Ref": "PSMInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "PSM"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "PSMInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "<script> cfn-init.exe -v -s ${AWS::StackId} -r PSMMachine --configsets ascending --region ${AWS::Region} </script>"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "ComponentInstanceProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "ascending": [
+                            "configSSMAndHostname",
+                            "configServices",
+                            "configSignal"
+                        ]
+                    },
+                    "configSSMAndHostname": {
+                        "services": {
+                            "windows": {
+                                "AmazonSSMAgent": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "C:\\Program Files\\Amazon\\SSM\\Plugins\\awsCloudWatch\\AWS.EC2.Windows.CloudWatch.json"
+                                    ]
+                                }
+                            }
+                        },
+                        "commands": {
+                            "1-cloudwatch": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\CloudWatch.ps1 -LogGroup ${LogGroup} -PSMCfnInitLogStream ${PSMCfnInitLogStream} -PSMConfiguration ${PSMConfigurationsLog} -PSMRegistration ${PSMRegistrationLog} -Region ${AWS::Region}\n"
+                                }
+                            },
+                            "2-restartSSM": {
+                                "command": "powershell.exe -Command \"Restart-Service AmazonSSMAgent\"",
+                                "waitAfterCompletion": 60,
+                                "ignoreErrors": true
+                            }
+                        }
+                    },
+                    "configServices": {
+                        "commands": {
+                            "1-configuration": {
+                                "command": {
+                                    "Fn::Sub": [
+                                        "powershell.exe -File C:\\CyberArk\\Deployment\\PSMConfiguration.ps1 -VaultIpAddress ${VaultIpAddress} -VaultAdminUser Administrator -VaultPort 1858",
+                                        {
+                                            "VaultIpAddress": {
+                                                "Fn::Sub": "${VaultMachine.PrivateIp},${VaultDRMachine.PrivateIp}"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "2-registration": {
+                                "command": {
+                                    "Fn::Sub": "powershell.exe -File C:\\CyberArk\\Deployment\\PSMRegistration.ps1 -VaultAdminUser Administrator -SSMAdminPassParameterID ${StoreAdminPassword.SsmId}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            },
+                            "3-PSMserviceConfig": {
+                                "command": "sc config \"Cyber-Ark Privileged Session Manager\" start=auto",
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    },
+                    "configSignal": {
+                        "commands": {
+                            "0-signalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "cfn-signal.exe -e %ERRORLEVEL% --stack ${AWS::StackId} --resource PSMMachine --region ${AWS::Region}\n"
+                                },
+                                "waitAfterCompletion": 0
+                            }
+                        }
+                    }
+                }
+            },
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT15M"
+                }
+            },
+            "DeletionPolicy": "Retain",
+            "DependsOn": [
+                "CPMMachine"
+            ]
+        },
+        "PSMPMachine": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Ref": "PSMPInstanceName"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": {
+                    "Ref": "PSMPInstanceSecurityGroups"
+                },
+                "SubnetId": {
+                    "Ref": "PSMPInstanceSubnetId"
+                },
+                "ImageId": {
+                    "Fn::FindInMap": [
+                        "RegionMap",
+                        {
+                            "Ref": "AWS::Region"
+                        },
+                        "PSMP"
+                    ]
+                },
+                "InstanceType": {
+                    "Ref": "PSMPInstanceType"
+                },
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Sub": "#!/bin/bash -e\n/opt/aws/bin/cfn-init -v --stack ${AWS::StackId} --resource PSMPMachine --configsets install_all --region ${AWS::Region}\n/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource PSMPMachine --region ${AWS::Region}\n"
+                    }
+                },
+                "KeyName": {
+                    "Ref": "KeyName"
+                },
+                "IamInstanceProfile": {
+                    "Ref": "ComponentInstanceProfile"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "install_all": [
+                            "install_logs",
+                            "install_psmp"
+                        ]
+                    },
+                    "install_logs": {
+                        "files": {
+                            "/etc/awslogs/awslogs.conf": {
+                                "content": {
+                                    "Fn::Sub": "[general]\nstate_file= /var/awslogs/state/agent-state\n[/var/log/cloud-init.log]\nfile = /var/log/cloud-init.log\nlog_group_name = ${LogGroup}\nlog_stream_name = PSMSSHMachine/cloud-init.log\ndatetime_format =\n[/var/log/cloud-init-output.log]\nfile = /var/log/cloud-init-output.log\nlog_group_name = ${LogGroup}\nlog_stream_name = PSMSSHMachine/cloud-init-output.log\ndatetime_format =\n[/var/log/cfn-init.log]\nfile = /var/log/cfn-init.log\nlog_group_name = ${LogGroup}\nlog_stream_name = PSMSSHMachine/cfn-init.log\ndatetime_format =\n[/var/log/cfn-wire.log]\nfile = /var/log/cfn-wire.log\nlog_group_name = ${LogGroup}\nlog_stream_name = PSMSSHMachine/cfn-wire.log\ndatetime_format =\n"
+                                },
+                                "mode": "000444",
+                                "owner": "root",
+                                "group": "root"
+                            },
+                            "/etc/awslogs/awscli.conf": {
+                                "content": {
+                                    "Fn::Sub": "[plugins]\ncwlogs = cwlogs\n[default]\nregion = ${AWS::Region}\n"
+                                },
+                                "mode": "000444",
+                                "owner": "root",
+                                "group": "root"
+                            }
+                        },
+                        "commands": {
+                            "01_create_state_directory": {
+                                "command": "mkdir -p /var/awslogs/state"
+                            }
+                        },
+                        "services": {
+                            "sysvinit": {
+                                "awslogs": {
+                                    "enabled": true,
+                                    "ensureRunning": true,
+                                    "files": [
+                                        "/etc/awslogs/awslogs.conf"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "install_psmp": {
+                        "commands": {
+                            "01-CreateCredFile": {
+                                "command": {
+                                    "Fn::Sub": "sudo /opt/CARKpsmp/bin/createcredfile /root/CD-Image/user.cred Password -Username Administrator -Password ${VaultAdminPassword} -Hostname"
+                                }
+                            },
+                            "02-PSMPdeploy": {
+                                "command": {
+                                    "Fn::Sub": [
+                                        "/root/CD-Image/register_and_activation.sh /root/CD-Image/user.cred ${VaultIpAddress} $(curl http://169.254.169.254/latest/meta-data/instance-id) y",
+                                        {
+                                            "VaultIpAddress": {
+                                                "Fn::Sub": "${VaultMachine.PrivateIp},${VaultDRMachine.PrivateIp}"
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "03-PostInstall": {
+                                "command": "sudo rm -rf /root/CD-Image/"
+                            },
+                            "99-SignalCompletion": {
+                                "command": {
+                                    "Fn::Sub": "/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource PSMPMachine --region ${AWS::Region}"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "DependsOn": [
+                "PSMMachine"
+            ],
+            "CreationPolicy": {
+                "ResourceSignal": {
+                    "Timeout": "PT10M"
+                }
+            },
+            "DeletionPolicy": "Retain"
+        },
+        "InstancesSSMPolicy": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+                "PolicyName": "InstancesSsmAccess",
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "ssm:GetParameters"
+                            ],
+                            "Resource": [
+                                {
+                                    "Fn::Sub": "arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/*"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "Roles": [
+                    {
+                        "Ref": "ComponentInstanceRole"
+                    }
+                ]
+            },
+            "DeletionPolicy": "Retain"
+        }
+    },
+    "Parameters": {
+        "EULA": {
+            "Type": "String",
+            "Description": "I have read and agree to the Terms and Conditions.",
+            "AllowedValues": [
+                "Accept",
+                "Decline"
+            ],
+            "Default": "Decline"
+        },
+        "KeyName": {
+            "Type": "AWS::EC2::KeyPair::KeyName",
+            "Description": "Select an existing Key Pair from your AWS account.",
+            "ConstraintDescription": "Can contain only ASCII characters."
+        },
+        "VaultFilesBucket": {
+            "Type": "String",
+            "Description": "Enter the name of the S3 bucket containing the license and recovery public key."
+        },
+        "LicenseFile": {
+            "Type": "String",
+            "Description": "Enter the path of the Vault license file within the bucket.",
+            "Default": "license.xml"
+        },
+        "RecoveryPublicKey": {
+            "Type": "String",
+            "Description": "Enter the path of the recovery public key file within the bucket.",
+            "Default": "recpub.key"
+        },
+        "VaultInstanceName": {
+            "Type": "String",
+            "Description": "Enter a name for the Vault instance.",
+            "Default": "CyberArk Vault"
+        },
+        "VaultMasterPassword": {
+            "Type": "String",
+            "Description": "Enter a password for the Primary Vault Master user.",
+            "NoEcho": true,
+            "MinLength": 8,
+            "AllowedPattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&\\*\\(\\)_\\-+=:])(?=\\S+$).{8,}$",
+            "ConstraintDescription": "Vault Master password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit and 1 special character"
+        },
+        "RetypeMasterPassword": {
+            "Type": "String",
+            "Description": "Retype the password for the Primary Vault Master user.",
+            "NoEcho": true,
+            "MinLength": 8
+        },
+        "VaultAdminPassword": {
+            "Type": "String",
+            "Description": "Enter a password for the Primary Vault Administrator user.",
+            "NoEcho": true,
+            "MinLength": 8,
+            "AllowedPattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&\\*\\(\\)_\\-+=:])(?=\\S+$).{8,}$",
+            "ConstraintDescription": "Vault Administrator password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit and 1 special character"
+        },
+        "RetypeAdminPassword": {
+            "Type": "String",
+            "Description": "Retype the password for the Primary Vault Administrator user.",
+            "NoEcho": true,
+            "MinLength": 8
+        },
+        "VaultDRPassword": {
+            "Type": "String",
+            "Description": "Enter the DR User Password.",
+            "NoEcho": true,
+            "MinLength": 8,
+            "AllowedPattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&\\*\\(\\)_\\-+=:])(?=\\S+$).{8,}$",
+            "ConstraintDescription": "Vault DR password must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit and 1 special character"
+        },
+        "RetypeDRPassword": {
+            "Type": "String",
+            "Description": "Retype the DR User Password.",
+            "NoEcho": true,
+            "MinLength": 8
+        },
+        "Secret": {
+            "Type": "String",
+            "Description": "Enter a secret string for the DR user.",
+            "NoEcho": true,
+            "AllowedPattern": "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&\\*\\(\\)_\\-+=:])(?=\\S+$).{8,}$|.{0,0}",
+            "ConstraintDescription": "Secret must contain at least 1 lowercase letter, 1 uppercase letter, 1 digit and 1 special characters, Minimum 10 characters, Allowed A-Z,a-z,0-9,all special characters, Cannot except / \\ - ; and controlled characters.",
+            "MinLength": 10
+        },
+        "SecretRetype": {
+            "Type": "String",
+            "Description": "Retype the secret string for the DR User.",
+            "NoEcho": true
+        },
+        "VaultInstanceType": {
+            "Type": "String",
+            "Description": "Select the instance type of the Vault instances.",
+            "AllowedValues": [
+                "m5.large",
+                "m5.xlarge",
+                "m5.2xlarge",
+                "m5.4xlarge"
+            ],
+            "Default": "m5.large"
+        },
+        "VaultInstanceSecurityGroups": {
+            "Type": "List<AWS::EC2::SecurityGroup::Id>",
+            "Description": "Assign Security Groups to the Vault instances."
+        },
+        "VaultInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the Primary Vault instance will reside."
+        },
+        "DRInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the DR Vault instance will reside."
+        },
+        "CPMInstanceName": {
+            "Type": "String",
+            "Description": "Enter a name for the CPM instance.",
+            "Default": "CyberArk CPM"
+        },
+        "CPMInstanceType": {
+            "Type": "String",
+            "Description": "Select the instance type of the CPM instance.",
+            "AllowedValues": [
+                "c5.large",
+                "c5.xlarge",
+                "c5.2xlarge",
+                "c5.4xlarge"
+            ],
+            "Default": "c5.large"
+        },
+        "CPMInstanceSecurityGroups": {
+            "Type": "List<AWS::EC2::SecurityGroup::Id>",
+            "Description": "Assign Security Groups to the CPM instance."
+        },
+        "CPMInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the CPM instance will reside."
+        },
+        "PVWAInstanceName": {
+            "Type": "String",
+            "Description": "Enter a name for the PVWA instance.",
+            "Default": "CyberArk PVWA"
+        },
+        "PVWAInstanceType": {
+            "Type": "String",
+            "Description": "Select the instance type of the PVWA instance.",
+            "AllowedValues": [
+                "t3.medium",
+                "t3.large",
+                "t3.xlarge",
+                "t3.2xlarge"
+            ],
+            "Default": "t3.medium"
+        },
+        "PVWAInstanceSecurityGroups": {
+            "Type": "List<AWS::EC2::SecurityGroup::Id>",
+            "Description": "Assign Security Groups to the PVWA instance."
+        },
+        "PVWAInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the PVWA instance will reside."
+        },
+        "PVWAHostName": {
+            "Type": "String",
+            "Description": "IP or FQDN of PVWA server"
+        },
+        "PSMInstanceName": {
+            "Type": "String",
+            "Description": "Enter a name for the PSM instance.",
+            "Default": "CyberArk PSM"
+        },
+        "PSMInstanceType": {
+            "Type": "String",
+            "Description": "Select the instance type of the PSM instance.",
+            "AllowedValues": [
+                "m5.2xlarge",
+                "m5.4xlarge",
+                "m5.8xlarge"
+            ],
+            "Default": "m5.2xlarge"
+        },
+        "PSMInstanceSecurityGroups": {
+            "Type": "List<AWS::EC2::SecurityGroup::Id>",
+            "Description": "Assign Security Groups to the PSM instance."
+        },
+        "PSMInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the PSM instance will reside."
+        },
+        "PSMPInstanceName": {
+            "Type": "String",
+            "Description": "Enter a name for the PSM SSH Proxy instance.",
+            "Default": "CyberArk PSM SSH Proxy"
+        },
+        "PSMPInstanceType": {
+            "Type": "String",
+            "Description": "Select the instance type of the PSM SSH Proxy instance.",
+            "AllowedValues": [
+                "m5.large",
+                "m5.xlarge",
+                "m5.2xlarge",
+                "m5.4xlarge"
+            ],
+            "Default": "m5.large"
+        },
+        "PSMPInstanceSecurityGroups": {
+            "Type": "List<AWS::EC2::SecurityGroup::Id>",
+            "Description": "Assign Security Groups to the PSM SSH Proxy instance."
+        },
+        "PSMPInstanceSubnetId": {
+            "Type": "AWS::EC2::Subnet::Id",
+            "Description": "Select the Subnet Id where the PSM SSH Proxy instance will reside."
+        }
+    },
+    "Rules": {
+        "PasswordConfirmation": {
+            "Assertions": [
+                {
+                    "Assert": {
+                        "Fn::Equals": [
+                            {
+                                "Ref": "VaultMasterPassword"
+                            },
+                            {
+                                "Ref": "RetypeMasterPassword"
+                            }
+                        ]
+                    },
+                    "AssertDescription": "The password confirmation does not match."
+                },
+                {
+                    "Assert": {
+                        "Fn::Equals": [
+                            {
+                                "Ref": "VaultAdminPassword"
+                            },
+                            {
+                                "Ref": "RetypeAdminPassword"
+                            }
+                        ]
+                    },
+                    "AssertDescription": "The password confirmation does not match."
+                },
+                {
+                    "Assert": {
+                        "Fn::Equals": [
+                            {
+                                "Ref": "VaultDRPassword"
+                            },
+                            {
+                                "Ref": "RetypeDRPassword"
+                            }
+                        ]
+                    },
+                    "AssertDescription": "The password confirmation does not match."
+                },
+                {
+                    "Assert": {
+                        "Fn::Equals": [
+                            {
+                                "Ref": "Secret"
+                            },
+                            {
+                                "Ref": "SecretRetype"
+                            }
+                        ]
+                    },
+                    "AssertDescription": "The secret confirmation does not match."
+                }
+            ]
+        },
+        "EULAAcception": {
+            "Assertions": [
+                {
+                    "Assert": {
+                        "Fn::Equals": [
+                            {
+                                "Ref": "EULA"
+                            },
+                            "Accept"
+                        ]
+                    },
+                    "AssertDescription": "You must accept EULA to continue."
+                }
+            ]
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Interface": {
+            "ParameterGroups": [
+                {
+                    "Label": {
+                        "default": "General parameters"
+                    },
+                    "Parameters": [
+                        "EULA",
+                        "KeyName",
+                        "VaultFilesBucket",
+                        "LicenseFile",
+                        "RecoveryPublicKey"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "Primary Vault and DR Vault configuration"
+                    },
+                    "Parameters": [
+                        "VaultInstanceName",
+                        "VaultAdminPassword",
+                        "RetypeAdminPassword",
+                        "VaultMasterPassword",
+                        "RetypeMasterPassword",
+                        "VaultDRPassword",
+                        "RetypeDRPassword",
+                        "Secret",
+                        "SecretRetype",
+                        "VaultInstanceType",
+                        "VaultInstanceSecurityGroups",
+                        "VaultInstanceSubnetId",
+                        "DRInstanceSubnetId"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "CPM configuration"
+                    },
+                    "Parameters": [
+                        "CPMInstanceName",
+                        "CPMInstanceType",
+                        "CPMInstanceSecurityGroups",
+                        "CPMInstanceSubnetId"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "PVWA configuration"
+                    },
+                    "Parameters": [
+                        "PVWAInstanceName",
+                        "PVWAInstanceType",
+                        "PVWAInstanceSecurityGroups",
+                        "PVWAInstanceSubnetId",
+                        "PVWAHostName"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "PSM configuration"
+                    },
+                    "Parameters": [
+                        "PSMInstanceName",
+                        "PSMInstanceType",
+                        "PSMInstanceSecurityGroups",
+                        "PSMInstanceSubnetId"
+                    ]
+                },
+                {
+                    "Label": {
+                        "default": "PSM SSH Proxy configuration"
+                    },
+                    "Parameters": [
+                        "PSMPInstanceName",
+                        "PSMPInstanceType",
+                        "PSMPInstanceSecurityGroups",
+                        "PSMPInstanceSubnetId"
+                    ]
+                }
+            ],
+            "ParameterLabels": {
+                "EULA": {
+                    "default": "License Agreement"
+                },
+                "KeyName": {
+                    "default": "Key Pair"
+                },
+                "VaultFilesBucket": {
+                    "default": "S3 Bucket"
+                },
+                "LicenseFile": {
+                    "default": "Vault License File"
+                },
+                "RecoveryPublicKey": {
+                    "default": "Recovery Public Key"
+                },
+                "VaultInstanceName": {
+                    "default": "Vault Instance Name"
+                },
+                "VaultAdminPassword": {
+                    "default": "Primary Vault Admin Password"
+                },
+                "RetypeAdminPassword": {
+                    "default": "Retype Primary Vault Admin Password"
+                },
+                "VaultMasterPassword": {
+                    "default": "Primary Vault Master Password"
+                },
+                "RetypeMasterPassword": {
+                    "default": "Retype Primary Vault Master Password"
+                },
+                "VaultDRPassword": {
+                    "default": "DR User Password"
+                },
+                "RetypeDRPassword": {
+                    "default": "Retype DR User Password"
+                },
+                "Secret": {
+                    "default": "DR User Secret"
+                },
+                "SecretRetype": {
+                    "default": "Retype DR User Secret"
+                },
+                "VaultInstanceType": {
+                    "default": "Primary Vault and Vault DR Instance Type"
+                },
+                "VaultInstanceSecurityGroups": {
+                    "default": "Vault Instance Security Groups"
+                },
+                "VaultInstanceSubnetId": {
+                    "default": "Primary Vault Instance Subnet Id"
+                },
+                "DRInstanceSubnetId": {
+                    "default": "Vault DR Instance Subnet Id"
+                },
+                "CPMInstanceName": {
+                    "default": "CPM Instance Name"
+                },
+                "CPMInstanceType": {
+                    "default": "CPM Instance Type"
+                },
+                "CPMInstanceSecurityGroups": {
+                    "default": "CPM Instance Security Groups"
+                },
+                "CPMInstanceSubnetId": {
+                    "default": "CPM Instance Subnet Id"
+                },
+                "PVWAInstanceName": {
+                    "default": "PVWA Instance Name"
+                },
+                "PVWAInstanceType": {
+                    "default": "PVWA Instance Type"
+                },
+                "PVWAInstanceSecurityGroups": {
+                    "default": "PVWA Instance Security Groups"
+                },
+                "PVWAInstanceSubnetId": {
+                    "default": "PVWA Instance Subnet Id"
+                },
+                "PVWAHostName": {
+                    "default": "PVWA FQDN (Optional)"
+                },
+                "PSMInstanceName": {
+                    "default": "PSM Instance Name"
+                },
+                "PSMInstanceType": {
+                    "default": "PSM Instance Type"
+                },
+                "PSMInstanceSecurityGroups": {
+                    "default": "PSM Instance Security Groups"
+                },
+                "PSMInstanceSubnetId": {
+                    "default": "PSM Instance Subnet Id"
+                },
+                "PSMPInstanceName": {
+                    "default": "PSM SSH Proxy Instance Name"
+                },
+                "PSMPInstanceType": {
+                    "default": "PSM SSH Proxy Instance Type"
+                },
+                "PSMPInstanceSecurityGroups": {
+                    "default": "PSM SSH Proxy Instance Security Groups"
+                },
+                "PSMPInstanceSubnetId": {
+                    "default": "PSM SSH Proxy Instance Subnet Id"
+                }
+            }
+        }
+    },
+    "Conditions": {
+        "SecretEmpty": {
+            "Fn::Equals": [
+                "",
+                {
+                    "Ref": "Secret"
+                }
+            ]
+        },
+        "PVWAHostNameEmpty": {
+            "Fn::Equals": [
+                "",
+                {
+                    "Ref": "PVWAHostName"
+                }
+            ]
+        }
+    },
+    "Mappings": {
+        "RegionMap": {
+            "us-east-1": {
+                "Vault": "ami-05ad2b7bb117d064d",
+                "CPM": "ami-09acb8040cd1ff689",
+                "PVWA": "ami-06247d8ebc51c688d",
+                "PSM": "ami-0d26711802f24a07a",
+                "PSMP": "ami-045192f07c75c8660"
+            },
+            "us-east-2": {
+                "Vault": "ami-0ba34074ff95c6a9b",
+                "CPM": "ami-0a8c87f4565c0d82b",
+                "PVWA": "ami-0e2190b89f364fb5b",
+                "PSM": "ami-0875137ec3231ae48",
+                "PSMP": "ami-046a920160a5cf937"
+            },
+            "eu-west-2": {
+                "Vault": "ami-0d8099cc7ba5d452c",
+                "CPM": "ami-09d6d7a14a11ba226",
+                "PVWA": "ami-0631050ea904ce024",
+                "PSM": "ami-046b644ecf27280b6",
+                "PSMP": "ami-0795ef88e843f8ce6"
+            },
+            "eu-west-3": {
+                "Vault": "ami-08e2ab590a0dea634",
+                "CPM": "ami-0018609651302bcb2",
+                "PVWA": "ami-06403b056332da174",
+                "PSM": "ami-05d79f62846c0d161",
+                "PSMP": "ami-0be971a4d5935a5fc"
+            },
+            "eu-north-1": {
+                "Vault": "ami-036c01f4dab663417",
+                "CPM": "ami-055c6c4a8da4ec7ac",
+                "PVWA": "ami-04cc24bb2cc1827f4",
+                "PSM": "ami-03a32ef9c578997bd",
+                "PSMP": "ami-0a4d7e330876bc0ee"
+            },
+            "us-west-1": {
+                "Vault": "ami-0105fe8c6a9fad8c1",
+                "CPM": "ami-0f91b9cf0c67dfa22",
+                "PVWA": "ami-06220e837d5e1b0c7",
+                "PSM": "ami-01b176098058da406",
+                "PSMP": "ami-0c0bdaf112ad53df7"
+            },
+            "us-west-2": {
+                "Vault": "ami-0353948cc75dc4160",
+                "CPM": "ami-08f351d5c59d853ef",
+                "PVWA": "ami-01cc9f04b450c905d",
+                "PSM": "ami-0a439e38c83ad453b",
+                "PSMP": "ami-08f13c95b8249d6ed"
+            },
+            "ca-central-1": {
+                "Vault": "ami-071532fbb023f3107",
+                "CPM": "ami-0ec60a4296195d219",
+                "PVWA": "ami-0c2672689a73d9a0b",
+                "PSM": "ami-0042d99bcc6e32bf9",
+                "PSMP": "ami-0a8cfc7763a049ae0"
+            },
+            "eu-west-1": {
+                "Vault": "ami-0b3bfde34f267dcb2",
+                "CPM": "ami-01cfef0b23c8219b6",
+                "PVWA": "ami-026634bcc21494b79",
+                "PSM": "ami-09d90aac4cd1b6fe3",
+                "PSMP": "ami-0db1fbddc4d449603"
+            },
+            "eu-central-1": {
+                "Vault": "ami-0fe305af50263c06d",
+                "CPM": "ami-01134eb0cc3387c9c",
+                "PVWA": "ami-0270b0694f2884cc2",
+                "PSM": "ami-0f3c30dff6f7ea47c",
+                "PSMP": "ami-0e327fd2d532a3b21"
+            },
+            "ap-southeast-1": {
+                "Vault": "ami-01263202c96d9988e",
+                "CPM": "ami-0ed2ce7f91798d256",
+                "PVWA": "ami-0eb1328a4af95f537",
+                "PSM": "ami-0bc7542884ef57300",
+                "PSMP": "ami-0fbc9959ea2520ab9"
+            },
+            "ap-southeast-2": {
+                "Vault": "ami-0d1cb2cb7c8803cdb",
+                "CPM": "ami-0fb4e377dccdfa745",
+                "PVWA": "ami-09a56e2c245373246",
+                "PSM": "ami-082f34eaf29901d41",
+                "PSMP": "ami-08a23c6f7e97dbe41"
+            },
+            "ap-northeast-2": {
+                "Vault": "ami-0d687ae9bd0bb5ce0",
+                "CPM": "ami-0934dea1fd446ab10",
+                "PVWA": "ami-042b8730b87ef84ae",
+                "PSM": "ami-0152cac9812be43d8",
+                "PSMP": "ami-0e47211f7bc3210ff"
+            },
+            "ap-northeast-1": {
+                "Vault": "ami-0dc24a348d2146743",
+                "CPM": "ami-07d7a28fc8f001d8d",
+                "PVWA": "ami-0ff5b3dd040c172fc",
+                "PSM": "ami-09dd1aa8d07ae483e",
+                "PSMP": "ami-0e4180b4a39d45600"
+            },
+            "ap-south-1": {
+                "Vault": "ami-0e2c349d77eef16c4",
+                "CPM": "ami-0cacf7b27ec91ffcd",
+                "PVWA": "ami-0d34d614c01e20f7b",
+                "PSM": "ami-0ea6dd6b3a570313e",
+                "PSMP": "ami-05f262775f6f8a170"
+            },
+            "sa-east-1": {
+                "Vault": "ami-08a34ccf19521eb28",
+                "CPM": "ami-057c2c0ef557b203e",
+                "PVWA": "ami-0b9a74b60728d8000",
+                "PSM": "ami-0d99de18cca368e15",
+                "PSMP": "ami-0fb8551089808cc9f"
+            },
+            "us-gov-west-1": {
+                "Vault": "ami-0e5100972290c3cf9",
+                "CPM": "ami-0b1606b1e7656ca98",
+                "PVWA": "ami-000b073030fa01344",
+                "PSM": "ami-034a3371664da2df2",
+                "PSMP": "ami-0e1cdbee4c5caa767"
+            },
+            "us-gov-east-1": {
+                "Vault": "ami-0c8a16586ca544e78",
+                "CPM": "ami-08ddb3d9d0da8f384",
+                "PVWA": "ami-0e8c33f79a1d52875",
+                "PSM": "ami-0f62022a4843af5d6",
+                "PSMP": "ami-0b9ebda7f33c9a021"
+            }
+        }
+    },
+    "Outputs": {
+        "CloudWatchLogGroupName": {
+            "Description": "The name of the CloudWatch log group",
+            "Value": {
+                "Ref": "LogGroup"
+            }
+        }
+    }
+}
